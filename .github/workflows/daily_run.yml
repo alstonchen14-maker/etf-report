@@ -1,0 +1,41 @@
+name: 每日自動更新 ETF 報表
+
+# 設定觸發時間
+on:
+  schedule:
+    # 這是 UTC 時間。 UTC 1:00 = 台灣時間 09:00
+    - cron: '0 1 * * *'
+  # 允許手動按按鈕執行 (方便測試)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 下載程式碼 (Checkout)
+        uses: actions/checkout@v3
+
+      - name: 設定 Python 環境
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 安裝必要的套件
+        run: |
+          pip install pandas selenium lxml webdriver-manager
+
+      - name: 執行爬蟲程式
+        run: python scraper.py
+
+      - name: 提交並上傳變更 (Commit & Push)
+        run: |
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "actions@github.com"
+          git add history/ index.html
+          # 如果有變更才提交，沒變更就不做動作
+          git commit -m "Auto-update ETF report: $(date +'%Y-%m-%d')" || exit 0
+          git push
