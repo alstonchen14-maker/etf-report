@@ -4,7 +4,7 @@ name: 每日自動更新 ETF 報表
 on:
   schedule:
     # 這是 UTC 時間。 UTC 1:00 = 台灣時間 09:00
-    - cron: '0 1 * * *'
+    - cron: '45 0 * * *'
   # 允許手動按按鈕執行 (方便測試)
   workflow_dispatch:
 
