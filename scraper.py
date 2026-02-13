@@ -9,7 +9,7 @@ import time
 import datetime
 import random
 from io import StringIO
-from git import Repo
+# ❌ 移除了原本這裡報錯的 from git import Repo
 
 # --- 設定 ---
 URL = "https://www.ezmoney.com.tw/ETF/Fund/Info?fundCode=49YTW"
@@ -28,8 +28,12 @@ def get_data():
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
     
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    try:
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+    except Exception as e:
+        print(f"❌ Driver 安裝失敗: {e}")
+        return None
     
     target_df = None
     try:
@@ -52,7 +56,8 @@ def get_data():
     except Exception as e:
         print(f"❌ 錯誤: {e}")
     finally:
-        driver.quit()
+        if 'driver' in locals():
+            driver.quit()
     return target_df
 
 def clean_percentage(x):
@@ -74,7 +79,9 @@ def generate_fake_history(df_now, col_w):
 
 def main():
     df_now = get_data()
-    if df_now is None: return
+    if df_now is None: 
+        print("❌ 抓取失敗，程式結束")
+        return
 
     col_w = next((c for c in df_now.columns if '權重' in c), None)
     col_n = next((c for c in df_now.columns if '名稱' in c), None)
@@ -113,7 +120,6 @@ def main():
             elif diff < -0.001: bg, tc, sym = "#e6ffe6", "#188038", "▼"
             rows += f"<tr style='background:{bg}'><td>{nm}</td><td>{wo}</td><td>{wn}</td><td style='color:{tc}'><b>{sym} {diff:+.2f}%</b></td></tr>"
 
-        # --- 這裡開始是 HTML 與 JavaScript 下載功能 ---
         html = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -138,16 +144,12 @@ def main():
 function downloadCSV() {{
     var csv = [];
     var rows = document.querySelectorAll("table tr");
-    
     for (var i = 0; i < rows.length; i++) {{
         var row = [], cols = rows[i].querySelectorAll("td, th");
         for (var j = 0; j < cols.length; j++) 
-            // 移除逗號以免 Excel 判讀錯誤
             row.push(cols[j].innerText.replace(/,/g, ""));
         csv.push(row.join(","));
     }}
-
-    // 加入 BOM (\\uFEFF) 讓 Excel 能正確顯示中文
     var csvFile = new Blob(["\\uFEFF" + csv.join("\\n")], {{type: "text/csv"}});
     var downloadLink = document.createElement("a");
     downloadLink.download = "ETF_Report_{d_now}.csv";
@@ -162,9 +164,7 @@ function downloadCSV() {{
 <div class='card'>
   <h2>📈 統一台股增長 (00981A)</h2>
   <p style='color:#666'>更新日期：{d_now} (比較對象: {d_prev})</p>
-  
   <button onclick="downloadCSV()" class="btn">📥 下載報表 (Excel)</button>
-  
   <table>
     <thead><tr><th>名稱</th><th>舊權重</th><th>新權重</th><th>變動</th></tr></thead>
     <tbody>{rows}</tbody>
@@ -175,7 +175,7 @@ function downloadCSV() {{
 
         with open(HTML_FILENAME, "w", encoding="utf-8") as f:
             f.write(html)
-        print("✅ HTML 報表生成完畢 (含下載功能)")
+        print("✅ HTML 報表生成完畢")
 
 if __name__ == "__main__":
     main()
