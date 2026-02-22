@@ -30,7 +30,7 @@ function downloadCSV() {
     }
     var csvFile = new Blob(["\uFEFF" + csv.join("\n")], {type: "text/csv"});
     var downloadLink = document.createElement("a");
-    downloadLink.download = "ETF_Report_2026-02-21.csv";
+    downloadLink.download = "ETF_Report_2026-02-22.csv";
     downloadLink.href = window.URL.createObjectURL(csvFile);
     downloadLink.style.display = "none";
     document.body.appendChild(downloadLink);
@@ -41,7 +41,7 @@ function downloadCSV() {
 <body>
 <div class='card'>
   <h2>📈 統一台股增長 (00981A)</h2>
-  <p style='color:#666'>更新日期：2026-02-21 (比較對象: 2026-02-20)</p>
+  <p style='color:#666'>更新日期：2026-02-22 (比較對象: 2026-02-21)</p>
   <button onclick="downloadCSV()" class="btn">📥 下載報表 (Excel)</button>
   <table>
     <thead><tr><th>名稱</th><th>舊權重</th><th>新權重</th><th>變動</th></tr></thead>
