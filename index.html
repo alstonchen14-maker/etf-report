@@ -24,7 +24,7 @@ function downloadCSV() {
     }
     var csvFile = new Blob(["\uFEFF" + csv.join("\n")], {type: "text/csv"});
     var downloadLink = document.createElement("a");
-    downloadLink.download = "ETF_Full_Report_2026-06-16.csv";
+    downloadLink.download = "ETF_Full_Report_2026-06-17.csv";
     downloadLink.href = window.URL.createObjectURL(csvFile);
     downloadLink.click();
 }
@@ -33,7 +33,7 @@ function downloadCSV() {
 <body>
 <div class='card'>
   <h2>📈 統一台股增長 (00981A) - 持股異動明細</h2>
-  <p style='color:#666'>更新日期：2026-06-16 (比較對象: 2026-06-15) | 單位：<strong>股</strong></p>
+  <p style='color:#666'>更新日期：2026-06-17 (比較對象: 2026-06-16) | 單位：<strong>股</strong></p>
   <button onclick="downloadCSV()" class="btn">📥 下載完整報表 (CSV)</button>
   <table>
     <thead>
@@ -43,144 +43,144 @@ function downloadCSV() {
             <th>舊股數</th><th>新股數</th><th>股數變動</th>
         </tr>
     </thead>
-    <tbody><tr style='background:#ffe6e6'>
+    <tbody><tr style='background:#e6ffe6'>
                 <td>台積電</td>
-                <td>9.67%</td><td>9.87%</td>
-                <td style='color:#d93025'><b>▲ +0.20%</b></td>
+                <td>9.87%</td><td>9.77%</td>
+                <td style='color:#188038'><b>▼ -0.10%</b></td>
                 <td>11,960,000</td><td>11,960,000</td>
-                <td style='color:#d93025'>+0</td>
+                <td style='color:#188038'>+0</td>
             </tr><tr style='background:#ffe6e6'>
                 <td>台光電</td>
-                <td>7.68%</td><td>7.9%</td>
-                <td style='color:#d93025'><b>▲ +0.22%</b></td>
+                <td>7.9%</td><td>7.99%</td>
+                <td style='color:#d93025'><b>▲ +0.09%</b></td>
                 <td>4,486,000</td><td>4,486,000</td>
                 <td style='color:#d93025'>+0</td>
             </tr><tr style='background:#ffe6e6'>
-                <td>聯發科</td>
-                <td>7.4%</td><td>7.62%</td>
-                <td style='color:#d93025'><b>▲ +0.22%</b></td>
-                <td>4,861,000</td><td>4,861,000</td>
-                <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
                 <td>國巨*</td>
-                <td>6.77%</td><td>7.45%</td>
-                <td style='color:#d93025'><b>▲ +0.68%</b></td>
-                <td>21,168,000</td><td>22,792,000</td>
-                <td style='color:#d93025'>+1,624,000</td>
-            </tr><tr style='background:#ffe6e6'>
+                <td>7.45%</td><td>7.85%</td>
+                <td style='color:#d93025'><b>▲ +0.40%</b></td>
+                <td>22,792,000</td><td>23,292,000</td>
+                <td style='color:#d93025'>+500,000</td>
+            </tr><tr style='background:#e6ffe6'>
+                <td>聯發科</td>
+                <td>7.62%</td><td>7.42%</td>
+                <td style='color:#188038'><b>▼ -0.20%</b></td>
+                <td>4,861,000</td><td>4,861,000</td>
+                <td style='color:#188038'>+0</td>
+            </tr><tr style='background:#e6ffe6'>
                 <td>智邦</td>
-                <td>5.24%</td><td>5.49%</td>
-                <td style='color:#d93025'><b>▲ +0.25%</b></td>
+                <td>5.49%</td><td>5.41%</td>
+                <td style='color:#188038'><b>▼ -0.08%</b></td>
                 <td>6,334,000</td><td>6,334,000</td>
-                <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
+                <td style='color:#188038'>+0</td>
+            </tr><tr style='background:#e6ffe6'>
                 <td>旺矽</td>
-                <td>4.99%</td><td>5.05%</td>
-                <td style='color:#d93025'><b>▲ +0.06%</b></td>
+                <td>5.05%</td><td>5.01%</td>
+                <td style='color:#188038'><b>▼ -0.04%</b></td>
                 <td>2,279,000</td><td>2,279,000</td>
+                <td style='color:#188038'>+0</td>
+            </tr><tr style='background:#e6ffe6'>
+                <td>台達電</td>
+                <td>5.04%</td><td>4.85%</td>
+                <td style='color:#188038'><b>▼ -0.19%</b></td>
+                <td>6,572,000</td><td>6,572,000</td>
+                <td style='color:#188038'>+0</td>
+            </tr><tr style='background:#ffe6e6'>
+                <td>緯穎</td>
+                <td>4.18%</td><td>4.33%</td>
+                <td style='color:#d93025'><b>▲ +0.15%</b></td>
+                <td>2,492,000</td><td>2,492,000</td>
                 <td style='color:#d93025'>+0</td>
             </tr><tr style='background:#ffe6e6'>
-                <td>台達電</td>
-                <td>4.94%</td><td>5.04%</td>
-                <td style='color:#d93025'><b>▲ +0.10%</b></td>
-                <td>6,572,000</td><td>6,572,000</td>
+                <td>欣興</td>
+                <td>4.21%</td><td>4.22%</td>
+                <td style='color:#d93025'><b>▲ +0.01%</b></td>
+                <td>12,466,000</td><td>12,466,000</td>
                 <td style='color:#d93025'>+0</td>
             </tr><tr style='background:#e6ffe6'>
                 <td>奇鋐</td>
-                <td>4.26%</td><td>4.23%</td>
+                <td>4.23%</td><td>4.2%</td>
                 <td style='color:#188038'><b>▼ -0.03%</b></td>
                 <td>5,191,000</td><td>5,191,000</td>
                 <td style='color:#188038'>+0</td>
             </tr><tr style='background:#ffe6e6'>
-                <td>欣興</td>
-                <td>4.07%</td><td>4.21%</td>
-                <td style='color:#d93025'><b>▲ +0.14%</b></td>
-                <td>12,466,000</td><td>12,466,000</td>
-                <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
-                <td>緯穎</td>
-                <td>4.16%</td><td>4.18%</td>
-                <td style='color:#d93025'><b>▲ +0.02%</b></td>
-                <td>2,492,000</td><td>2,492,000</td>
-                <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
                 <td>金像電</td>
-                <td>3.74%</td><td>3.85%</td>
-                <td style='color:#d93025'><b>▲ +0.11%</b></td>
+                <td>3.85%</td><td>3.9%</td>
+                <td style='color:#d93025'><b>▲ +0.05%</b></td>
                 <td>8,315,000</td><td>8,315,000</td>
                 <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
+            </tr><tr style='background:#e6ffe6'>
                 <td>聯電</td>
-                <td>3.73%</td><td>3.75%</td>
-                <td style='color:#d93025'><b>▲ +0.02%</b></td>
+                <td>3.75%</td><td>3.71%</td>
+                <td style='color:#188038'><b>▼ -0.04%</b></td>
                 <td>77,390,000</td><td>77,390,000</td>
-                <td style='color:#d93025'>+0</td>
+                <td style='color:#188038'>+0</td>
             </tr><tr style='background:#ffe6e6'>
                 <td>日月光投控</td>
-                <td>3.61%</td><td>3.65%</td>
-                <td style='color:#d93025'><b>▲ +0.04%</b></td>
+                <td>3.65%</td><td>3.66%</td>
+                <td style='color:#d93025'><b>▲ +0.01%</b></td>
                 <td>17,948,000</td><td>17,948,000</td>
                 <td style='color:#d93025'>+0</td>
             </tr><tr style='background:#e6ffe6'>
                 <td>貿聯-KY</td>
-                <td>3.73%</td><td>3.52%</td>
-                <td style='color:#188038'><b>▼ -0.21%</b></td>
+                <td>3.52%</td><td>3.46%</td>
+                <td style='color:#188038'><b>▼ -0.06%</b></td>
                 <td>4,833,848</td><td>4,833,848</td>
                 <td style='color:#188038'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
+            </tr><tr style='background:#e6ffe6'>
                 <td>南電</td>
-                <td>3.17%</td><td>3.36%</td>
-                <td style='color:#d93025'><b>▲ +0.19%</b></td>
+                <td>3.36%</td><td>3.28%</td>
+                <td style='color:#188038'><b>▼ -0.08%</b></td>
                 <td>10,828,000</td><td>10,828,000</td>
+                <td style='color:#188038'>+0</td>
+            </tr><tr style='background:#ffe6e6'>
+                <td>健策</td>
+                <td>2.95%</td><td>3.1%</td>
+                <td style='color:#d93025'><b>▲ +0.15%</b></td>
+                <td>2,267,000</td><td>2,267,000</td>
+                <td style='color:#d93025'>+0</td>
+            </tr><tr style='background:#ffe6e6'>
+                <td>台燿</td>
+                <td>2.64%</td><td>2.82%</td>
+                <td style='color:#d93025'><b>▲ +0.18%</b></td>
+                <td>4,763,000</td><td>4,927,000</td>
+                <td style='color:#d93025'>+164,000</td>
+            </tr><tr style='background:#ffe6e6'>
+                <td>信驊</td>
+                <td>2.64%</td><td>2.67%</td>
+                <td style='color:#d93025'><b>▲ +0.03%</b></td>
+                <td>422,000</td><td>422,000</td>
                 <td style='color:#d93025'>+0</td>
             </tr><tr style='background:#e6ffe6'>
-                <td>健策</td>
-                <td>2.96%</td><td>2.95%</td>
+                <td>穎崴</td>
+                <td>1.51%</td><td>1.41%</td>
+                <td style='color:#188038'><b>▼ -0.10%</b></td>
+                <td>442,000</td><td>436,000</td>
+                <td style='color:#188038'>-6,000</td>
+            </tr><tr style='background:#ffe6e6'>
+                <td>精測</td>
+                <td>1.12%</td><td>1.13%</td>
+                <td style='color:#d93025'><b>▲ +0.01%</b></td>
+                <td>930,000</td><td>930,000</td>
+                <td style='color:#d93025'>+0</td>
+            </tr><tr style='background:#e6ffe6'>
+                <td>富世達</td>
+                <td>1.07%</td><td>1.06%</td>
+                <td style='color:#188038'><b>▼ -0.01%</b></td>
+                <td>1,811,000</td><td>1,811,000</td>
+                <td style='color:#188038'>+0</td>
+            </tr><tr style='background:#e6ffe6'>
+                <td>勤誠</td>
+                <td>1.05%</td><td>1.04%</td>
                 <td style='color:#188038'><b>▼ -0.01%</b></td>
                 <td>2,267,000</td><td>2,267,000</td>
                 <td style='color:#188038'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
-                <td>台燿</td>
-                <td>2.55%</td><td>2.64%</td>
-                <td style='color:#d93025'><b>▲ +0.09%</b></td>
-                <td>4,763,000</td><td>4,763,000</td>
-                <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
-                <td>信驊</td>
-                <td>2.56%</td><td>2.64%</td>
-                <td style='color:#d93025'><b>▲ +0.08%</b></td>
-                <td>422,000</td><td>422,000</td>
-                <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
-                <td>穎崴</td>
-                <td>1.49%</td><td>1.51%</td>
-                <td style='color:#d93025'><b>▲ +0.02%</b></td>
-                <td>442,000</td><td>442,000</td>
-                <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#e6ffe6'>
-                <td>精測</td>
-                <td>1.14%</td><td>1.12%</td>
-                <td style='color:#188038'><b>▼ -0.02%</b></td>
-                <td>930,000</td><td>930,000</td>
-                <td style='color:#188038'>+0</td>
             </tr><tr style='background:white'>
-                <td>富世達</td>
-                <td>1.07%</td><td>1.07%</td>
-                <td style='color:#333'><b>- +0.00%</b></td>
-                <td>1,811,000</td><td>1,811,000</td>
-                <td style='color:#333'>+0</td>
-            </tr><tr style='background:#e6ffe6'>
-                <td>勤誠</td>
-                <td>1.1%</td><td>1.05%</td>
-                <td style='color:#188038'><b>▼ -0.05%</b></td>
-                <td>2,267,000</td><td>2,267,000</td>
-                <td style='color:#188038'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
                 <td>鴻海</td>
-                <td>0.67%</td><td>0.68%</td>
-                <td style='color:#d93025'><b>▲ +0.01%</b></td>
+                <td>0.68%</td><td>0.68%</td>
+                <td style='color:#333'><b>- +0.00%</b></td>
                 <td>7,307,000</td><td>7,307,000</td>
-                <td style='color:#d93025'>+0</td>
+                <td style='color:#333'>+0</td>
             </tr><tr style='background:white'>
                 <td>嘉澤</td>
                 <td>0.67%</td><td>0.67%</td>
@@ -188,62 +188,62 @@ function downloadCSV() {
                 <td>852,000</td><td>852,000</td>
                 <td style='color:#333'>+0</td>
             </tr><tr style='background:#ffe6e6'>
+                <td>高力</td>
+                <td>0.49%</td><td>0.54%</td>
+                <td style='color:#d93025'><b>▲ +0.05%</b></td>
+                <td>1,034,000</td><td>1,034,000</td>
+                <td style='color:#d93025'>+0</td>
+            </tr><tr style='background:#ffe6e6'>
                 <td>萬潤</td>
-                <td>0.51%</td><td>0.52%</td>
+                <td>0.52%</td><td>0.53%</td>
                 <td style='color:#d93025'><b>▲ +0.01%</b></td>
                 <td>1,334,000</td><td>1,334,000</td>
                 <td style='color:#d93025'>+0</td>
             </tr><tr style='background:#ffe6e6'>
-                <td>高力</td>
-                <td>0.44%</td><td>0.49%</td>
-                <td style='color:#d93025'><b>▲ +0.05%</b></td>
-                <td>1,034,000</td><td>1,034,000</td>
-                <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#e6ffe6'>
                 <td>頎邦</td>
-                <td>0.47%</td><td>0.46%</td>
-                <td style='color:#188038'><b>▼ -0.01%</b></td>
-                <td>5,875,000</td><td>5,875,000</td>
-                <td style='color:#188038'>+0</td>
+                <td>0.46%</td><td>0.49%</td>
+                <td style='color:#d93025'><b>▲ +0.03%</b></td>
+                <td>5,875,000</td><td>6,275,000</td>
+                <td style='color:#d93025'>+400,000</td>
             </tr><tr style='background:#ffe6e6'>
                 <td>創意</td>
-                <td>0.42%</td><td>0.44%</td>
-                <td style='color:#d93025'><b>▲ +0.02%</b></td>
+                <td>0.44%</td><td>0.45%</td>
+                <td style='color:#d93025'><b>▲ +0.01%</b></td>
                 <td>258,000</td><td>258,000</td>
                 <td style='color:#d93025'>+0</td>
-            </tr><tr style='background:#e6ffe6'>
+            </tr><tr style='background:white'>
                 <td>高技</td>
-                <td>0.4%</td><td>0.39%</td>
-                <td style='color:#188038'><b>▼ -0.01%</b></td>
+                <td>0.39%</td><td>0.39%</td>
+                <td style='color:#333'><b>- +0.00%</b></td>
                 <td>3,528,000</td><td>3,528,000</td>
-                <td style='color:#188038'>+0</td>
+                <td style='color:#333'>+0</td>
             </tr><tr style='background:white'>
                 <td>南茂</td>
                 <td>0.38%</td><td>0.38%</td>
                 <td style='color:#333'><b>- +0.00%</b></td>
                 <td>11,635,000</td><td>11,635,000</td>
                 <td style='color:#333'>+0</td>
-            </tr><tr style='background:#e6ffe6'>
+            </tr><tr style='background:#ffe6e6'>
                 <td>譜瑞-KY</td>
-                <td>0.38%</td><td>0.37%</td>
-                <td style='color:#188038'><b>▼ -0.01%</b></td>
+                <td>0.37%</td><td>0.38%</td>
+                <td style='color:#d93025'><b>▲ +0.01%</b></td>
                 <td>1,642,000</td><td>1,642,000</td>
-                <td style='color:#188038'>+0</td>
+                <td style='color:#d93025'>+0</td>
             </tr><tr style='background:white'>
                 <td>京元電子</td>
                 <td>0.35%</td><td>0.35%</td>
                 <td style='color:#333'><b>- +0.00%</b></td>
                 <td>3,645,000</td><td>3,645,000</td>
                 <td style='color:#333'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
+            </tr><tr style='background:white'>
                 <td>臻鼎-KY</td>
-                <td>0.29%</td><td>0.31%</td>
-                <td style='color:#d93025'><b>▲ +0.02%</b></td>
+                <td>0.31%</td><td>0.31%</td>
+                <td style='color:#333'><b>- +0.00%</b></td>
                 <td>1,428,000</td><td>1,428,000</td>
-                <td style='color:#d93025'>+0</td>
+                <td style='color:#333'>+0</td>
             </tr><tr style='background:#e6ffe6'>
                 <td>台表科</td>
-                <td>0.32%</td><td>0.31%</td>
+                <td>0.31%</td><td>0.3%</td>
                 <td style='color:#188038'><b>▼ -0.01%</b></td>
                 <td>4,334,000</td><td>4,334,000</td>
                 <td style='color:#188038'>+0</td>
@@ -265,29 +265,23 @@ function downloadCSV() {
                 <td style='color:#333'><b>- +0.00%</b></td>
                 <td>3,988,000</td><td>3,988,000</td>
                 <td style='color:#333'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
+            </tr><tr style='background:white'>
                 <td>環球晶</td>
-                <td>0.11%</td><td>0.13%</td>
-                <td style='color:#d93025'><b>▲ +0.02%</b></td>
+                <td>0.13%</td><td>0.13%</td>
+                <td style='color:#333'><b>- +0.00%</b></td>
                 <td>350,000</td><td>350,000</td>
-                <td style='color:#d93025'>+0</td>
+                <td style='color:#333'>+0</td>
             </tr><tr style='background:white'>
                 <td>新日興</td>
                 <td>0.12%</td><td>0.12%</td>
                 <td style='color:#333'><b>- +0.00%</b></td>
                 <td>1,741,000</td><td>1,741,000</td>
                 <td style='color:#333'>+0</td>
-            </tr><tr style='background:#ffe6e6'>
-                <td>同欣電</td>
-                <td>0.09%</td><td>0.11%</td>
-                <td style='color:#d93025'><b>▲ +0.02%</b></td>
-                <td>1,066,000</td><td>1,466,000</td>
-                <td style='color:#d93025'>+400,000</td>
             </tr><tr style='background:white'>
-                <td>華通</td>
-                <td>0.03%</td><td>0.03%</td>
+                <td>同欣電</td>
+                <td>0.11%</td><td>0.11%</td>
                 <td style='color:#333'><b>- +0.00%</b></td>
-                <td>329,000</td><td>329,000</td>
+                <td>1,466,000</td><td>1,466,000</td>
                 <td style='color:#333'>+0</td>
             </tr><tr style='background:white'>
                 <td>中鋼</td>
@@ -296,10 +290,10 @@ function downloadCSV() {
                 <td>5,163,000</td><td>5,163,000</td>
                 <td style='color:#333'>+0</td>
             </tr><tr style='background:white'>
-                <td>富喬</td>
-                <td>0%</td><td>0%</td>
+                <td>華通</td>
+                <td>0.03%</td><td>0.03%</td>
                 <td style='color:#333'><b>- +0.00%</b></td>
-                <td>107,000</td><td>107,000</td>
+                <td>329,000</td><td>329,000</td>
                 <td style='color:#333'>+0</td>
             </tr><tr style='background:white'>
                 <td>大立光</td>
@@ -311,14 +305,14 @@ function downloadCSV() {
                 <td>強茂</td>
                 <td>0%</td><td>0%</td>
                 <td style='color:#333'><b>- +0.00%</b></td>
-                <td>0</td><td>5,000</td>
-                <td style='color:#333'>+5,000</td>
-            </tr><tr style='background:#e6ffe6'>
-                <td>漢唐</td>
-                <td>0.56%</td><td>0%</td>
-                <td style='color:#188038'><b>▼ -0.56%</b></td>
-                <td>1,200,000</td><td>0</td>
-                <td style='color:#188038'>-1,200,000</td>
+                <td>5,000</td><td>5,000</td>
+                <td style='color:#333'>+0</td>
+            </tr><tr style='background:white'>
+                <td>廣達</td>
+                <td>0%</td><td>0%</td>
+                <td style='color:#333'><b>- +0.00%</b></td>
+                <td>1,000</td><td>1,000</td>
+                <td style='color:#333'>+0</td>
             </tr><tr style='background:white'>
                 <td>美律</td>
                 <td>0%</td><td>0%</td>
@@ -326,10 +320,10 @@ function downloadCSV() {
                 <td>18,000</td><td>18,000</td>
                 <td style='color:#333'>+0</td>
             </tr><tr style='background:white'>
-                <td>廣達</td>
+                <td>富喬</td>
                 <td>0%</td><td>0%</td>
                 <td style='color:#333'><b>- +0.00%</b></td>
-                <td>1,000</td><td>1,000</td>
+                <td>107,000</td><td>107,000</td>
                 <td style='color:#333'>+0</td>
             </tr><tr style='background:white'>
                 <td>世界</td>
