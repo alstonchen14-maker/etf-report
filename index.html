@@ -24,7 +24,7 @@ function downloadCSV() {
     }
     var csvFile = new Blob(["\uFEFF" + csv.join("\n")], {type: "text/csv"});
     var downloadLink = document.createElement("a");
-    downloadLink.download = "ETF_Full_Report_2026-06-20.csv";
+    downloadLink.download = "ETF_Full_Report_2026-06-21.csv";
     downloadLink.href = window.URL.createObjectURL(csvFile);
     downloadLink.click();
 }
@@ -33,7 +33,7 @@ function downloadCSV() {
 <body>
 <div class='card'>
   <h2>📈 統一台股增長 (00981A) - 持股異動明細</h2>
-  <p style='color:#666'>更新日期：2026-06-20 (比較對象: 2026-06-19) | 單位：<strong>股</strong></p>
+  <p style='color:#666'>更新日期：2026-06-21 (比較對象: 2026-06-20) | 單位：<strong>股</strong></p>
   <button onclick="downloadCSV()" class="btn">📥 下載完整報表 (CSV)</button>
   <table>
     <thead>
