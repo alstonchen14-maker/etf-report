@@ -1,41 +1,51 @@
-name: 每日自動更新 ETF 報表
+name: Daily Scraper
 
-# 設定觸發時間
 on:
   schedule:
-    # 這是 UTC 時間。 UTC 1:00 = 台灣時間 09:00
-    - cron: '30 7 * * *'
-  # 允許手動按按鈕執行 (方便測試)
+    - cron: '0 8 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 下載程式碼 (Checkout)
-        uses: actions/checkout@v3
-
-      - name: 設定 Python 環境
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.10'
+          
+      - run: |
+          python -m pip install --upgrade pip
+          pip install selenium
+          
+      - run: python scraper.py
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scraped-data
+          path: |
+            history/
+            index.html
 
-      - name: 安裝必要的套件
-        run: |
-          pip install pandas selenium lxml webdriver-manager
-
-      - name: 執行爬蟲程式
-        run: python scraper.py
-
-      - name: 提交並上傳變更 (Commit & Push)
-        run: |
-          git config --global user.name "GitHub Action Bot"
-          git config --global user.email "actions@github.com"
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/download-artifact@v4
+        with:
+          name: scraped-data
+          
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add history/ index.html
-          # 如果有變更才提交，沒變更就不做動作
-          git commit -m "Auto-update ETF report: $(date +'%Y-%m-%d')" || exit 0
+          git commit -m "update" || exit 0
           git push
