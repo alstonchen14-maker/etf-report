@@ -10,12 +10,10 @@ import datetime
 import random
 from io import StringIO
 
-# --- 設定 ---
 URL = "https://www.ezmoney.com.tw/ETF/Fund/Info?fundCode=49YTW"
 HISTORY_DIR = "history"
 HTML_FILENAME = "index.html"
 
-# 確保歷史資料夾存在
 if not os.path.exists(HISTORY_DIR):
     os.makedirs(HISTORY_DIR)
 
@@ -49,7 +47,6 @@ def get_data():
                 df.columns = df.columns.get_level_values(-1)
             df.columns = df.columns.astype(str).str.strip()
             cols = str(df.columns.tolist())
-            # 偵測是否有名稱、權重相關欄位
             if ("名稱" in cols or "股票" in cols) and ("權重" in cols or "持股" in cols):
                 target_df = df
                 break
@@ -61,7 +58,6 @@ def get_data():
     return target_df
 
 def clean_val(x):
-    """處理百分比或數字字串轉換為 float"""
     try:
         if pd.isna(x): return 0.0
         s = str(x).replace('%', '').replace(',', '').strip()
@@ -72,10 +68,8 @@ def generate_fake_history(df_now, col_w, col_v):
     print("✨ 生成模擬歷史資料 (含股數)...")
     df_fake = df_now.copy()
     for i in range(len(df_fake)):
-        # 模擬權重變動
         w_val = clean_val(df_fake.iloc[i][col_w])
         df_fake.at[i, col_w] = f"{max(0, w_val + random.uniform(-0.3, 0.3)):.2f}%"
-        # 模擬股數變動
         if col_v:
             v_val = clean_val(df_fake.iloc[i][col_v])
             df_fake.at[i, col_v] = int(max(0, v_val * random.uniform(0.95, 1.05)))
@@ -89,11 +83,9 @@ def main():
         print("❌ 抓取失敗")
         return
 
-    # 定義欄位名稱關鍵字
     col_w = next((c for c in df_now.columns if '權重' in c), None)
     col_n = next((c for c in df_now.columns if '名稱' in c), None)
     col_c = next((c for c in df_now.columns if '代號' in c), col_n)
-    # 尋找股數/張數相關欄位
     col_v = next((c for c in df_now.columns if any(k in c for k in ['股數', '張數', '持股數', '數量'])), None)
 
     if col_w and col_n:
@@ -120,22 +112,18 @@ def main():
         for i, r in m.iterrows():
             nm = r[f"{col_n}_new"] if pd.notna(r[f"{col_n}_new"]) else r[f"{col_n}_old"]
             
-            # 權重處理
             wn = r[f"{col_w}_new"] if pd.notna(r[f"{col_w}_new"]) else "0%"
             wo = r[f"{col_w}_old"] if pd.notna(r[f"{col_w}_old"]) else "0%"
             w_diff = clean_val(wn) - clean_val(wo)
             
-            # 股數處理 (直接取用原始數值，不再除以 1000)
             vn = clean_val(r[f"{col_v}_new"]) if col_v and pd.notna(r[f"{col_v}_new"]) else 0
             vo = clean_val(r[f"{col_v}_old"]) if col_v and pd.notna(r[f"{col_v}_old"]) else 0
             v_diff = vn - vo
 
-            # 樣式判斷 (以權重變動為主)
             bg, tc, sym = "white", "#333", "-"
             if w_diff > 0.001: bg, tc, sym = "#ffe6e6", "#d93025", "▲"
             elif w_diff < -0.001: bg, tc, sym = "#e6ffe6", "#188038", "▼"
             
-            # 格式化輸出：加入千位分隔符 (:,)
             rows += f"""<tr style='background:{bg}'>
                 <td>{nm}</td>
                 <td>{wo}</td><td>{wn}</td>
@@ -144,7 +132,6 @@ def main():
                 <td style='color:{tc}'>{v_diff:+,.0f}</td>
             </tr>"""
 
-        # HTML 模板修改
         html_content = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -157,7 +144,7 @@ def main():
   table{{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px}}
   th{{background:#2c3e50;color:white;padding:10px;text-align:left;position:sticky;top:0}}
   td{{padding:10px;border-bottom:1px solid #eee; text-align:right}}
-  td:first-child, th:first-child{{text-align:left}} /* 讓名稱靠左 */
+  td:first-child, th:first-child{{text-align:left}}
   .btn{{display:inline-block; padding:10px 20px; background-color:#27ae60; color:white; text-decoration:none; border-radius:5px; font-weight:bold; cursor:pointer; border:none; margin-bottom:15px;}}
 </style>
 <script>
