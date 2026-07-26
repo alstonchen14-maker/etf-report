@@ -189,3 +189,36 @@ function downloadCSV() {{
 
 if __name__ == "__main__":
     main()
+import json
+
+# 整理出 App 專用的 JSON 格式
+json_list = []
+for i, r in m.iterrows():
+    nm = r[f"{col_n}_new"] if pd.notna(r[f"{col_n}_new"]) else r[f"{col_n}_old"]
+    wn = r[f"{col_w}_new"] if pd.notna(r[f"{col_w}_new"]) else "0%"
+    wo = r[f"{col_w}_old"] if pd.notna(r[f"{col_w}_old"]) else "0%"
+    w_diff = clean_val(wn) - clean_val(wo)
+    
+    vn = clean_val(r[f"{col_v}_new"]) if col_v and pd.notna(r[f"{col_v}_new"]) else 0
+    vo = clean_val(r[f"{col_v}_old"]) if col_v and pd.notna(r[f"{col_v}_old"]) else 0
+    v_diff = vn - vo
+
+    sym = "▲" if w_diff > 0.001 else ("▼" if w_diff < -0.001 else "-")
+    
+    json_list.append({
+        "name": str(nm),
+        "oldWeight": str(wo),
+        "newWeight": str(wn),
+        "weightChange": f"{sym} {w_diff:+.2f}%",
+        "oldShares": f"{vo:,.0f}",
+        "newShares": f"{vn:,.0f}",
+        "sharesChange": f"{v_diff:+,.0f}",
+        "isPositive": w_diff > 0.001,
+        "isNeutral": abs(w_diff) <= 0.001
+    })
+
+# 匯出成 JSON 檔案
+with open("portfolio.json", "w", encoding="utf-8") as f:
+    json.dump(json_list, f, ensure_ascii=False, indent=2)
+
+print("✅ portfolio.json 已成功匯出！")
