@@ -8,6 +8,7 @@ import glob
 import time
 import datetime
 import random
+import json
 from io import StringIO
 
 URL = "https://www.ezmoney.com.tw/ETF/Fund/Info?fundCode=49YTW"
@@ -109,6 +110,8 @@ def main():
         m = m.sort_values(by='sort', ascending=False)
 
         rows = ""
+        json_list = [] # 準備好存放 App 資料的陣列
+
         for i, r in m.iterrows():
             nm = r[f"{col_n}_new"] if pd.notna(r[f"{col_n}_new"]) else r[f"{col_n}_old"]
             
@@ -120,10 +123,12 @@ def main():
             vo = clean_val(r[f"{col_v}_old"]) if col_v and pd.notna(r[f"{col_v}_old"]) else 0
             v_diff = vn - vo
 
+            # HTML 用的顏色與符號
             bg, tc, sym = "white", "#333", "-"
             if w_diff > 0.001: bg, tc, sym = "#ffe6e6", "#d93025", "▲"
             elif w_diff < -0.001: bg, tc, sym = "#e6ffe6", "#188038", "▼"
             
+            # 加入 HTML 行
             rows += f"""<tr style='background:{bg}'>
                 <td>{nm}</td>
                 <td>{wo}</td><td>{wn}</td>
@@ -131,7 +136,21 @@ def main():
                 <td>{vo:,.0f}</td><td>{vn:,.0f}</td>
                 <td style='color:{tc}'>{v_diff:+,.0f}</td>
             </tr>"""
+            
+            # 加入 JSON 陣列 (給 iOS App 用)
+            json_list.append({
+                "name": str(nm),
+                "oldWeight": str(wo),
+                "newWeight": str(wn),
+                "weightChange": f"{sym} {w_diff:+.2f}%",
+                "oldShares": f"{vo:,.0f}",
+                "newShares": f"{vn:,.0f}",
+                "sharesChange": f"{v_diff:+,.0f}",
+                "isPositive": w_diff > 0.001,
+                "isNeutral": abs(w_diff) <= 0.001
+            })
 
+        # --- 產生 HTML 檔案 ---
         html_content = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -185,40 +204,12 @@ function downloadCSV() {{
 
         with open(HTML_FILENAME, "w", encoding="utf-8") as f:
             f.write(html_content)
-        print(f"✅ HTML 報表生成完畢，已切換為「股數」顯示。")
+        print("✅ HTML 報表生成完畢")
+        
+        # --- 產生 JSON 檔案 ---
+        with open("portfolio.json", "w", encoding="utf-8") as f:
+            json.dump(json_list, f, ensure_ascii=False, indent=2)
+        print("✅ portfolio.json 已成功匯出 (iOS App 專用)！")
 
 if __name__ == "__main__":
     main()
-import json
-
-# 整理出 App 專用的 JSON 格式
-json_list = []
-for i, r in m.iterrows():
-    nm = r[f"{col_n}_new"] if pd.notna(r[f"{col_n}_new"]) else r[f"{col_n}_old"]
-    wn = r[f"{col_w}_new"] if pd.notna(r[f"{col_w}_new"]) else "0%"
-    wo = r[f"{col_w}_old"] if pd.notna(r[f"{col_w}_old"]) else "0%"
-    w_diff = clean_val(wn) - clean_val(wo)
-    
-    vn = clean_val(r[f"{col_v}_new"]) if col_v and pd.notna(r[f"{col_v}_new"]) else 0
-    vo = clean_val(r[f"{col_v}_old"]) if col_v and pd.notna(r[f"{col_v}_old"]) else 0
-    v_diff = vn - vo
-
-    sym = "▲" if w_diff > 0.001 else ("▼" if w_diff < -0.001 else "-")
-    
-    json_list.append({
-        "name": str(nm),
-        "oldWeight": str(wo),
-        "newWeight": str(wn),
-        "weightChange": f"{sym} {w_diff:+.2f}%",
-        "oldShares": f"{vo:,.0f}",
-        "newShares": f"{vn:,.0f}",
-        "sharesChange": f"{v_diff:+,.0f}",
-        "isPositive": w_diff > 0.001,
-        "isNeutral": abs(w_diff) <= 0.001
-    })
-
-# 匯出成 JSON 檔案
-with open("portfolio.json", "w", encoding="utf-8") as f:
-    json.dump(json_list, f, ensure_ascii=False, indent=2)
-
-print("✅ portfolio.json 已成功匯出！")
