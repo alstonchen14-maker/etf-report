@@ -103,11 +103,29 @@ def main():
         d_now = os.path.basename(f_now).replace("portfolio_", "").replace(".csv", "") 
         d_prev = os.path.basename(f_prev).replace("portfolio_", "").replace(".csv", "") 
 
-        df1 = pd.read_csv(f_now).drop_duplicates(subset=[col_c]).set_index(col_c) 
-        df2 = pd.read_csv(f_prev).drop_duplicates(subset=[col_c]).set_index(col_c) 
-        m = df1.join(df2, lsuffix='_new', rsuffix='_old', how='outer') 
-        m['sort'] = m[f"{col_w}_new"].apply(clean_val) 
-        m = m.sort_values(by='sort', ascending=False) 
+        df1 = pd.read_csv(f_now)
+        df2 = pd.read_csv(f_prev)
+
+        # --- 動態抓取舊檔案 (df2) 的欄位名稱並對齊今日欄位 ---
+        col_w2 = next((c for c in df2.columns if '權重' in c), None)
+        col_n2 = next((c for c in df2.columns if '名稱' in c), None)
+        col_c2 = next((c for c in df2.columns if '代號' in c), col_n2)
+        col_v2 = next((c for c in df2.columns if any(k in c for k in ['股數', '張數', '持股數', '數量'])), None)
+
+        rename_map = {}
+        if col_c2 and col_c: rename_map[col_c2] = col_c
+        if col_n2 and col_n: rename_map[col_n2] = col_n
+        if col_w2 and col_w: rename_map[col_w2] = col_w
+        if col_v2 and col_v: rename_map[col_v2] = col_v
+        
+        df2 = df2.rename(columns=rename_map) # 將舊欄位名稱改成跟今天一樣
+
+        # --- 開始去重複並合併 ---
+        df1 = df1.drop_duplicates(subset=[col_c]).set_index(col_c)
+        df2 = df2.drop_duplicates(subset=[col_c]).set_index(col_c)
+        m = df1.join(df2, lsuffix='_new', rsuffix='_old', how='outer')
+        m['sort'] = m[f"{col_w}_new"].apply(clean_val)
+        m = m.sort_values(by='sort', ascending=False)
 
         rows = "" 
         json_list = [] # 準備好存放 App 資料的陣列 
