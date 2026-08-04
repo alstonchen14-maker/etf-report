@@ -48,9 +48,21 @@ def get_data():
                 df.columns = df.columns.get_level_values(-1) 
             df.columns = df.columns.astype(str).str.strip() 
             cols = str(df.columns.tolist()) 
+            
+            # 🚫 排除：如果表格的欄位名稱包含「期貨」，直接跳過不抓取
+            if "期貨" in cols:
+                continue
+
             if ("名稱" in cols or "股票" in cols) and ("權重" in cols or "持股" in cols): 
                 target_df = df 
                 break 
+                
+        # 🚫 排除：如果在混和表格中，把名稱裡面有「期貨」的資料列給刪除
+        if target_df is not None:
+            col_n_tmp = next((c for c in target_df.columns if '名稱' in c), None)
+            if col_n_tmp:
+                target_df = target_df[~target_df[col_n_tmp].astype(str).str.contains("期貨")]
+
     except Exception as e: 
         print(f"❌ 錯誤: {e}") 
     finally: 
@@ -80,8 +92,8 @@ def generate_fake_history(df_now, col_w, col_v):
 
 def main(): 
     df_now = get_data() 
-    if df_now is None:  
-        print("❌ 抓取失敗") 
+    if df_now is None or df_now.empty:  
+        print("❌ 抓取失敗或沒有符合的資料") 
         return 
 
     col_w = next((c for c in df_now.columns if '權重' in c), None) 
@@ -118,45 +130,43 @@ def main():
         if col_w2 and col_w: rename_map[col_w2] = col_w
         if col_v2 and col_v: rename_map[col_v2] = col_v
         
-        df2 = df2.rename(columns=rename_map) # 將舊欄位名稱改成跟今天一樣
+        df2 = df2.rename(columns=rename_map)
 
         # --- 開始去重複並合併 ---
-        df1 = df1.drop_duplicates(subset=[col_c]).set_index(col_c)
-        df2 = df2.drop_duplicates(subset=[col_c]).set_index(col_c)
-        m = df1.join(df2, lsuffix='_new', rsuffix='_old', how='outer')
-        m['sort'] = m[f"{col_w}_new"].apply(clean_val)
-        m = m.sort_values(by='sort', ascending=False)
+        df1 = df1.drop_duplicates(subset=[col_c]).set_index(col_c) 
+        df2 = df2.drop_duplicates(subset=[col_c]).set_index(col_c) 
+        m = df1.join(df2, lsuffix='_new', rsuffix='_old', how='outer') 
+        m['sort'] = m[f"{col_w}_new"].apply(clean_val) 
+        m = m.sort_values(by='sort', ascending=False) 
 
         rows = "" 
         json_list = [] # 準備好存放 App 資料的陣列 
 
         for idx, r in m.iterrows(): 
             # --- 1. 處理名稱 ---
-            # 如果「名稱」就是「代號」並被設為了 Index，直接取用 index 值 (idx)
             if col_n == col_c:
                 nm = idx
             else:
                 nm_new = r.get(f"{col_n}_new")
                 nm_old = r.get(f"{col_n}_old")
                 nm = nm_new if pd.notna(nm_new) else nm_old
-            
+             
             # --- 2. 處理權重 ---
-            # 使用 .get() 避免 KeyError，並設定預設值 "0%"
             wn = r.get(f"{col_w}_new", "0%")
             wn = wn if pd.notna(wn) else "0%"
             wo = r.get(f"{col_w}_old", "0%")
             wo = wo if pd.notna(wo) else "0%"
             w_diff = clean_val(wn) - clean_val(wo)
-            
+             
             # --- 3. 處理股數 ---
             vn = clean_val(r.get(f"{col_v}_new", 0)) if col_v and pd.notna(r.get(f"{col_v}_new")) else 0
             vo = clean_val(r.get(f"{col_v}_old", 0)) if col_v and pd.notna(r.get(f"{col_v}_old")) else 0
             v_diff = vn - vo
 
-            # HTML 用的顏色與符號 (以下維持你原來的邏輯)
+            # HTML 用的顏色與符號 
             bg, tc, sym = "white", "#333", "-" 
             if w_diff > 0.001: bg, tc, sym = "#ffe6e6", "#d93025", "▲" 
-            elif w_diff < -0.001: bg, tc, sym = "#e6ffe6", "#188038", "▼"
+            elif w_diff < -0.001: bg, tc, sym = "#e6ffe6", "#188038", "▼" 
              
             # 加入 HTML 行 
             rows += f"""<tr style='background:{bg}'> 
