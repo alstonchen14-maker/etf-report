@@ -86,7 +86,6 @@ def main():
 
     col_w = next((c for c in df_now.columns if '權重' in c), None)
     col_n = next((c for c in df_now.columns if '名稱' in c), None)
-    col_c = next((c for c in df_now.columns if '代號' in c), col_n)
     col_v = next((c for c in df_now.columns if any(k in c for k in ['股數', '張數', '持股數', '數量'])), None)
 
     if col_w and col_n:
@@ -103,33 +102,53 @@ def main():
         d_now = os.path.basename(f_now).replace("portfolio_", "").replace(".csv", "")
         d_prev = os.path.basename(f_prev).replace("portfolio_", "").replace(".csv", "")
 
-        # 先讀取原始 CSV
-        df1_raw = pd.read_csv(f_now)
-        df2_raw = pd.read_csv(f_prev)
+        # --- 建立一個統一標準化 DataFrame 的函式 ---
+        def standardize_df(file_path):
+            df = pd.read_csv(file_path)
+            c_c = next((c for c in df.columns if '代號' in c), next((c for c in df.columns if '名稱' in c), None))
+            c_n = next((c for c in df.columns if '名稱' in c), None)
+            c_w = next((c for c in df.columns if '權重' in c), None)
+            c_v = next((c for c in df.columns if any(k in c for k in ['股數', '張數', '持股數', '數量'])), None)
+            
+            # 複製一份對接用的 ID，避免設定成 Index 後原欄位消失
+            if c_c:
+                df['__INDEX__'] = df[c_c]
+                
+            # 將千變萬化的中文欄位，統一改名為標準的英文名稱
+            rename_map = {}
+            if c_n: rename_map[c_n] = 'Name'
+            if c_w: rename_map[c_w] = 'Weight'
+            if c_v: rename_map[c_v] = 'Volume'
+            
+            df = df.rename(columns=rename_map)
+            if '__INDEX__' in df.columns:
+                df = df.drop_duplicates(subset=['__INDEX__']).set_index('__INDEX__')
+            return df
+
+        # --- 套用標準化 ---
+        df1 = standardize_df(f_now)
+        df2 = standardize_df(f_prev)
         
-        # 分別動態尋找新、舊檔案的「代號」或「名稱」欄位作為 Index
-        col_c1 = next((c for c in df1_raw.columns if '代號' in c), next((c for c in df1_raw.columns if '名稱' in c), None))
-        col_c2 = next((c for c in df2_raw.columns if '代號' in c), next((c for c in df2_raw.columns if '名稱' in c), None))
-        
-        # 獨立處理去重與設定 Index
-        df1 = df1_raw.drop_duplicates(subset=[col_c1]).set_index(col_c1)
-        df2 = df2_raw.drop_duplicates(subset=[col_c2]).set_index(col_c2)
+        # --- 合併，此時欄位只會有 Name_new, Weight_new, Volume_new 等 ---
         m = df1.join(df2, lsuffix='_new', rsuffix='_old', how='outer')
-        m['sort'] = m[f"{col_w}_new"].apply(clean_val)
+        
+        # 處理排序 (用 .get() 確保找不到欄位時不會報錯)
+        m['sort'] = m.get('Weight_new', pd.Series("0%", index=m.index)).apply(clean_val)
         m = m.sort_values(by='sort', ascending=False)
 
         rows = ""
         json_list = [] # 準備好存放 App 資料的陣列
 
         for i, r in m.iterrows():
-            nm = r[f"{col_n}_new"] if pd.notna(r[f"{col_n}_new"]) else r[f"{col_n}_old"]
+            # 改用標準化後的名稱取值，並使用 .get() 避免 KeyError
+            nm = r.get("Name_new") if pd.notna(r.get("Name_new")) else r.get("Name_old")
             
-            wn = r[f"{col_w}_new"] if pd.notna(r[f"{col_w}_new"]) else "0%"
-            wo = r[f"{col_w}_old"] if pd.notna(r[f"{col_w}_old"]) else "0%"
+            wn = r.get("Weight_new") if pd.notna(r.get("Weight_new")) else "0%"
+            wo = r.get("Weight_old") if pd.notna(r.get("Weight_old")) else "0%"
             w_diff = clean_val(wn) - clean_val(wo)
             
-            vn = clean_val(r[f"{col_v}_new"]) if col_v and pd.notna(r[f"{col_v}_new"]) else 0
-            vo = clean_val(r[f"{col_v}_old"]) if col_v and pd.notna(r[f"{col_v}_old"]) else 0
+            vn = clean_val(r.get("Volume_new")) if pd.notna(r.get("Volume_new")) else 0
+            vo = clean_val(r.get("Volume_old")) if pd.notna(r.get("Volume_old")) else 0
             v_diff = vn - vo
 
             # HTML 用的顏色與符號
@@ -222,4 +241,3 @@ function downloadCSV() {{
 
 if __name__ == "__main__":
     main()
-    
