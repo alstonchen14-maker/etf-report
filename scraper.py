@@ -103,8 +103,17 @@ def main():
         d_now = os.path.basename(f_now).replace("portfolio_", "").replace(".csv", "")
         d_prev = os.path.basename(f_prev).replace("portfolio_", "").replace(".csv", "")
 
-        df1 = pd.read_csv(f_now).drop_duplicates(subset=[col_c]).set_index(col_c)
-        df2 = pd.read_csv(f_prev).drop_duplicates(subset=[col_c]).set_index(col_c)
+        # 先讀取原始 CSV
+        df1_raw = pd.read_csv(f_now)
+        df2_raw = pd.read_csv(f_prev)
+        
+        # 分別動態尋找新、舊檔案的「代號」或「名稱」欄位作為 Index
+        col_c1 = next((c for c in df1_raw.columns if '代號' in c), next((c for c in df1_raw.columns if '名稱' in c), None))
+        col_c2 = next((c for c in df2_raw.columns if '代號' in c), next((c for c in df2_raw.columns if '名稱' in c), None))
+        
+        # 獨立處理去重與設定 Index
+        df1 = df1_raw.drop_duplicates(subset=[col_c1]).set_index(col_c1)
+        df2 = df2_raw.drop_duplicates(subset=[col_c2]).set_index(col_c2)
         m = df1.join(df2, lsuffix='_new', rsuffix='_old', how='outer')
         m['sort'] = m[f"{col_w}_new"].apply(clean_val)
         m = m.sort_values(by='sort', ascending=False)
