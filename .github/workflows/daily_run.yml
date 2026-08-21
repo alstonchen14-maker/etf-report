@@ -2,9 +2,8 @@ name: Daily Scraper
 
 on:
   schedule:
-    - cron: '0 8 * * *'
-  workflow_dispatch:
-
+    - cron: '0 12 * * *'  # UTC 12:00 等於台灣時間 20:00
+  workflow_dispatch:      # 必須加上這個，API 或按鈕手動觸發才會生效
 permissions:
   contents: write
   pages: write
