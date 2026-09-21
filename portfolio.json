@@ -2,255 +2,255 @@
   {
     "name": "台積電",
     "oldWeight": "10.39%",
-    "newWeight": "10.39%",
-    "weightChange": "- +0.00%",
+    "newWeight": "10.29%",
+    "weightChange": "▼ -0.10%",
     "oldShares": "11,864,000",
     "newShares": "11,864,000",
     "sharesChange": "+0",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "聯發科",
     "oldWeight": "8.7%",
-    "newWeight": "8.7%",
-    "weightChange": "- +0.00%",
+    "newWeight": "9.08%",
+    "weightChange": "▲ +0.38%",
     "oldShares": "5,186,000",
     "newShares": "5,186,000",
     "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isPositive": true,
+    "isNeutral": false
   },
   {
     "name": "台光電",
     "oldWeight": "8.27%",
-    "newWeight": "8.27%",
-    "weightChange": "- +0.00%",
+    "newWeight": "8.13%",
+    "weightChange": "▼ -0.14%",
     "oldShares": "4,750,000",
     "newShares": "4,750,000",
     "sharesChange": "+0",
     "isPositive": false,
-    "isNeutral": true
-  },
-  {
-    "name": "奇鋐",
-    "oldWeight": "7.26%",
-    "newWeight": "7.26%",
-    "weightChange": "- +0.00%",
-    "oldShares": "5,949,000",
-    "newShares": "5,949,000",
-    "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "欣興",
     "oldWeight": "7.09%",
-    "newWeight": "7.09%",
-    "weightChange": "- +0.00%",
+    "newWeight": "7.24%",
+    "weightChange": "▲ +0.15%",
     "oldShares": "20,300,000",
     "newShares": "20,300,000",
     "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isPositive": true,
+    "isNeutral": false
   },
   {
-    "name": "旺矽",
-    "oldWeight": "5.26%",
-    "newWeight": "5.26%",
-    "weightChange": "- +0.00%",
-    "oldShares": "2,546,000",
-    "newShares": "2,546,000",
+    "name": "奇鋐",
+    "oldWeight": "7.26%",
+    "newWeight": "7.1%",
+    "weightChange": "▼ -0.16%",
+    "oldShares": "5,949,000",
+    "newShares": "5,949,000",
     "sharesChange": "+0",
     "isPositive": false,
-    "isNeutral": true
-  },
-  {
-    "name": "聯電",
-    "oldWeight": "4.95%",
-    "newWeight": "4.95%",
-    "weightChange": "- +0.00%",
-    "oldShares": "89,118,000",
-    "newShares": "89,118,000",
-    "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "健策",
     "oldWeight": "4.94%",
-    "newWeight": "4.94%",
-    "weightChange": "- +0.00%",
+    "newWeight": "5.09%",
+    "weightChange": "▲ +0.15%",
     "oldShares": "2,512,000",
     "newShares": "2,512,000",
     "sharesChange": "+0",
+    "isPositive": true,
+    "isNeutral": false
+  },
+  {
+    "name": "旺矽",
+    "oldWeight": "5.26%",
+    "newWeight": "4.89%",
+    "weightChange": "▼ -0.37%",
+    "oldShares": "2,546,000",
+    "newShares": "2,544,000",
+    "sharesChange": "-2,000",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
+  },
+  {
+    "name": "聯電",
+    "oldWeight": "4.95%",
+    "newWeight": "4.89%",
+    "weightChange": "▼ -0.06%",
+    "oldShares": "89,118,000",
+    "newShares": "89,118,000",
+    "sharesChange": "+0",
+    "isPositive": false,
+    "isNeutral": false
   },
   {
     "name": "國巨*",
     "oldWeight": "4.89%",
-    "newWeight": "4.89%",
-    "weightChange": "- +0.00%",
+    "newWeight": "4.87%",
+    "weightChange": "▼ -0.02%",
     "oldShares": "24,987,000",
     "newShares": "24,987,000",
     "sharesChange": "+0",
     "isPositive": false,
-    "isNeutral": true
-  },
-  {
-    "name": "緯穎",
-    "oldWeight": "4.55%",
-    "newWeight": "4.55%",
-    "weightChange": "- +0.00%",
-    "oldShares": "5,972,561",
-    "newShares": "5,972,561",
-    "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "台達電",
     "oldWeight": "4.47%",
-    "newWeight": "4.47%",
-    "weightChange": "- +0.00%",
+    "newWeight": "4.75%",
+    "weightChange": "▲ +0.28%",
     "oldShares": "7,240,000",
     "newShares": "7,240,000",
     "sharesChange": "+0",
+    "isPositive": true,
+    "isNeutral": false
+  },
+  {
+    "name": "緯穎",
+    "oldWeight": "4.55%",
+    "newWeight": "4.25%",
+    "weightChange": "▼ -0.30%",
+    "oldShares": "5,972,561",
+    "newShares": "5,656,561",
+    "sharesChange": "-316,000",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "智邦",
     "oldWeight": "4.27%",
-    "newWeight": "4.27%",
-    "weightChange": "- +0.00%",
+    "newWeight": "4.16%",
+    "weightChange": "▼ -0.11%",
     "oldShares": "6,464,000",
     "newShares": "6,464,000",
     "sharesChange": "+0",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "日月光投控",
     "oldWeight": "3.82%",
-    "newWeight": "3.82%",
-    "weightChange": "- +0.00%",
+    "newWeight": "3.9%",
+    "weightChange": "▲ +0.08%",
     "oldShares": "16,811,000",
     "newShares": "16,811,000",
     "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
-  },
-  {
-    "name": "南電",
-    "oldWeight": "3.69%",
-    "newWeight": "3.69%",
-    "weightChange": "- +0.00%",
-    "oldShares": "9,426,000",
-    "newShares": "9,426,000",
-    "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isPositive": true,
+    "isNeutral": false
   },
   {
     "name": "貿聯-KY",
     "oldWeight": "3.37%",
-    "newWeight": "3.37%",
-    "weightChange": "- +0.00%",
+    "newWeight": "3.44%",
+    "weightChange": "▲ +0.07%",
     "oldShares": "4,280,848",
     "newShares": "4,280,848",
     "sharesChange": "+0",
+    "isPositive": true,
+    "isNeutral": false
+  },
+  {
+    "name": "南電",
+    "oldWeight": "3.69%",
+    "newWeight": "3.35%",
+    "weightChange": "▼ -0.34%",
+    "oldShares": "9,426,000",
+    "newShares": "9,037,000",
+    "sharesChange": "-389,000",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "台燿",
     "oldWeight": "2.63%",
-    "newWeight": "2.63%",
-    "weightChange": "- +0.00%",
+    "newWeight": "2.78%",
+    "weightChange": "▲ +0.15%",
     "oldShares": "5,398,000",
-    "newShares": "5,398,000",
-    "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "newShares": "5,546,000",
+    "sharesChange": "+148,000",
+    "isPositive": true,
+    "isNeutral": false
   },
   {
     "name": "富世達",
     "oldWeight": "1.45%",
-    "newWeight": "1.45%",
-    "weightChange": "- +0.00%",
+    "newWeight": "1.5%",
+    "weightChange": "▲ +0.05%",
     "oldShares": "1,773,000",
     "newShares": "1,773,000",
     "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isPositive": true,
+    "isNeutral": false
   },
   {
     "name": "信驊",
     "oldWeight": "1.43%",
-    "newWeight": "1.43%",
-    "weightChange": "- +0.00%",
+    "newWeight": "1.44%",
+    "weightChange": "▲ +0.01%",
     "oldShares": "207,900",
     "newShares": "207,900",
     "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isPositive": true,
+    "isNeutral": false
   },
   {
     "name": "京元電子",
     "oldWeight": "1.36%",
-    "newWeight": "1.36%",
-    "weightChange": "- +0.00%",
+    "newWeight": "1.39%",
+    "weightChange": "▲ +0.03%",
     "oldShares": "13,138,450",
     "newShares": "13,138,450",
     "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isPositive": true,
+    "isNeutral": false
   },
   {
     "name": "創意",
     "oldWeight": "1.05%",
-    "newWeight": "1.05%",
-    "weightChange": "- +0.00%",
+    "newWeight": "1.1%",
+    "weightChange": "▲ +0.05%",
     "oldShares": "413,000",
     "newShares": "413,000",
     "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isPositive": true,
+    "isNeutral": false
   },
   {
     "name": "欣銓",
     "oldWeight": "0.63%",
-    "newWeight": "0.63%",
-    "weightChange": "- +0.00%",
+    "newWeight": "0.66%",
+    "weightChange": "▲ +0.03%",
     "oldShares": "6,628,000",
     "newShares": "6,628,000",
     "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isPositive": true,
+    "isNeutral": false
   },
   {
     "name": "精測",
     "oldWeight": "0.56%",
-    "newWeight": "0.56%",
-    "weightChange": "- +0.00%",
+    "newWeight": "0.54%",
+    "weightChange": "▼ -0.02%",
     "oldShares": "446,000",
     "newShares": "446,000",
     "sharesChange": "+0",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "臻鼎-KY",
     "oldWeight": "0.46%",
-    "newWeight": "0.46%",
-    "weightChange": "- +0.00%",
+    "newWeight": "0.45%",
+    "weightChange": "▼ -0.01%",
     "oldShares": "2,712,000",
     "newShares": "2,712,000",
     "sharesChange": "+0",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "金像電",
@@ -266,46 +266,46 @@
   {
     "name": "勤誠",
     "oldWeight": "0.44%",
-    "newWeight": "0.44%",
-    "weightChange": "- +0.00%",
+    "newWeight": "0.36%",
+    "weightChange": "▼ -0.08%",
     "oldShares": "1,364,000",
-    "newShares": "1,364,000",
-    "sharesChange": "+0",
+    "newShares": "1,159,000",
+    "sharesChange": "-205,000",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "高力",
     "oldWeight": "0.25%",
-    "newWeight": "0.25%",
-    "weightChange": "- +0.00%",
+    "newWeight": "0.26%",
+    "weightChange": "▲ +0.01%",
     "oldShares": "485,000",
     "newShares": "485,000",
     "sharesChange": "+0",
-    "isPositive": false,
-    "isNeutral": true
+    "isPositive": true,
+    "isNeutral": false
   },
   {
     "name": "台表科",
     "oldWeight": "0.23%",
-    "newWeight": "0.23%",
-    "weightChange": "- +0.00%",
+    "newWeight": "0.22%",
+    "weightChange": "▼ -0.01%",
     "oldShares": "3,248,000",
     "newShares": "3,248,000",
     "sharesChange": "+0",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "穎崴",
     "oldWeight": "0.22%",
-    "newWeight": "0.22%",
-    "weightChange": "- +0.00%",
+    "newWeight": "0.19%",
+    "weightChange": "▼ -0.03%",
     "oldShares": "95,000",
     "newShares": "95,000",
     "sharesChange": "+0",
     "isPositive": false,
-    "isNeutral": true
+    "isNeutral": false
   },
   {
     "name": "同欣電",
